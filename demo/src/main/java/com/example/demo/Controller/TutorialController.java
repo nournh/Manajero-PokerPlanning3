@@ -156,6 +156,7 @@ public class TutorialController {
         }
     }
 
+
     @DeleteMapping("/what-if-sections/{id}")
     public ResponseEntity<Void> deleteWhatIfSection(@PathVariable String id) {
         boolean isDeleted = whatIfSectionService.deleteSection(id);

@@ -28,6 +28,11 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation 'com.fasterxml.jackson.core:jackson-databind'
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.apache.poi:poi-ooxml:5.2.3' // Use the latest version
+    implementation 'org.apache.poi:poi:5.2.3' // Use the latest version
+    implementation 'org.apache.poi:poi-ooxml-schemas:4.1.2'
+    implementation 'org.apache.xmlbeans:xmlbeans:5.1.1'
+
 
 
 
