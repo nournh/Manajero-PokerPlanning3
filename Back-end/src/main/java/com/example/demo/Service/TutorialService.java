@@ -34,7 +34,6 @@ public class TutorialService {
 
         if (tutorialData.isPresent()) {
             Tutorial _tutorial = tutorialData.get();
-            _tutorial.setTitle(tutorial.getTitle());
             _tutorial.setDescription(tutorial.getDescription());
             _tutorial.setPublished(tutorial.isPublished());
             return Optional.of(tutorialRepository.save(_tutorial));
@@ -52,11 +51,5 @@ public class TutorialService {
         }
     }
 
-    public List<Tutorial> findByPublished(boolean published) {
-        return tutorialRepository.findByPublished(published);
-    }
 
-    public List<Tutorial> findByTitleContaining(String title) {
-        return tutorialRepository.findByTitleContaining(title);
-    }
 }

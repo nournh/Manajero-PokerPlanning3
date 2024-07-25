@@ -49,11 +49,7 @@ public class ProjectController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/import/{userId}")
-    public ResponseEntity<String> importProjectFromExcel(@RequestParam("file") MultipartFile file,@PathVariable Long userId) {
-        projectService.importProjectFromExcel(file, String.valueOf(userId));
-        return ResponseEntity.ok("Project imported successfully.");
-    }
+
 }
 
 
