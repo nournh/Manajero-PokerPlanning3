@@ -1,0 +1,94 @@
+<!-- project.component.html -->
+<div class="container">
+    <h2>Create Project</h2>
+  
+    <form [formGroup]="projectForm" (ngSubmit)="addProject()">
+      <div class="form-group">
+        <label for="name">Project Name</label>
+        <input id="name" formControlName="name" class="form-control" type="text" />
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+          <div *ngIf="name.errors?.required">Project Name is required.</div>
+          <div *ngIf="name.errors?.minlength">Project Name must be at least 5 characters long.</div>
+          <div *ngIf="name.errors?.maxlength">Project Name cannot be more than 15 characters long.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input id="startDate" formControlName="startDate" class="form-control" type="date" />
+        <div *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)" class="text-danger">
+          <div *ngIf="startDate.errors?.required">Start Date is required.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="endDate">End Date</label>
+        <input id="endDate" formControlName="endDate" class="form-control" type="date" />
+        <div *ngIf="endDate.invalid && (endDate.dirty || endDate.touched)" class="text-danger">
+          <div *ngIf="endDate.errors?.required">End Date is required.</div>
+          <div *ngIf="endDate.errors?.dateComparison">End Date must be after Start Date.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="nbDeveloper">Number of Developers</label>
+        <input id="nbDeveloper" formControlName="nbDeveloper" class="form-control" type="number" />
+        <div *ngIf="nbDeveloper.invalid && (nbDeveloper.dirty || nbDeveloper.touched)" class="text-danger">
+          <div *ngIf="nbDeveloper.errors?.required">Number of Developers is required.</div>
+          <div *ngIf="nbDeveloper.errors?.min">Number of Developers must be at least 5.</div>
+          <div *ngIf="nbDeveloper.errors?.max">Number of Developers cannot be more than 8.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="objective">Objective</label>
+        <textarea id="objective" formControlName="objective" class="form-control" rows="3"></textarea>
+        <div *ngIf="objective.invalid && (objective.dirty || objective.touched)" class="text-danger">
+          <div *ngIf="objective.errors?.required">Objective is required.</div>
+          <div *ngIf="objective.errors?.minlength">Objective must be at least 10 characters long.</div>
+          <div *ngIf="objective.errors?.maxlength">Objective cannot be more than 100 characters long.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="technology">Technology</label>
+        <input id="technology" formControlName="technology" class="form-control" type="text" />
+        <div *ngIf="technology.invalid && (technology.dirty || technology.touched)" class="text-danger">
+          <div *ngIf="technology.errors?.required">Technology is required.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="badget">Budget</label>
+        <input id="badget" formControlName="badget" class="form-control" type="text" />
+        <div *ngIf="badget.invalid && (badget.dirty || badget.touched)" class="text-danger">
+          <div *ngIf="badget.errors?.required">Budget is required.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="domain">Domain</label>
+        <select id="domain" formControlName="domain" class="form-control">
+          <option value="" disabled>Select Domain</option>
+          <option *ngFor="let domain of domainOptions" [value]="domain">{{ domain }}</option>
+        </select>
+        <div *ngIf="domain.invalid && (domain.dirty || domain.touched)" class="text-danger">
+          <div *ngIf="domain.errors?.required">Domain is required.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="statusProject">Status</label>
+        <select id="statusProject" formControlName="statusProject" class="form-control">
+          <option value="" disabled>Select Status</option>
+          <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+        </select>
+        <div *ngIf="statusProject.invalid && (statusProject.dirty || statusProject.touched)" class="text-danger">
+          <div *ngIf="statusProject.errors?.required">Status is required.</div>
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="projectForm.invalid">Add Project</button>
+    </form>
+  </div>
+  

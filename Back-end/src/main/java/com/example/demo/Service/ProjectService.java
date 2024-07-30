@@ -22,14 +22,37 @@ public class ProjectService {
 
     @Autowired
     private ProjectRepository projectRepository;
+    @Autowired
     private UserRepository userRepository;
+
 
     // Create
     public Project createProject(Project project) {
         return projectRepository.save(project);
     }
 
+    public Project addProjectAndAssignProjectToUser(Project p, String id) {
 
+        projectRepository.save(p);
+         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id"));
+        // Vérifier si le Set de projets de l'utilisateur est null, puis l'initialiser si nécessaire
+        if (user.getProjectSet() == null) {
+            user.setProjectSet(new HashSet<>());
+        }
+        // Vérifier si le Set d'utilisateurs du projet est null, puis l'initialiser si nécessaire
+        if (p.getUserSet() == null) {
+            p.setUserSet(new HashSet<>());
+        }
+        //Ajouter l'utilisateur au set des users de project
+        p.getUserSet().add(user);
+        //Ajouter le projet au set des projets de l'utilisateur
+        user.getProjectSet().add(p);
+        //Sauvegarder les changements
+        userRepository.save(user);
+        return projectRepository.save(p);
+
+
+    }
     // Read
     public List<Project> getAllProjects() {
         return projectRepository.findAll();

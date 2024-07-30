@@ -18,7 +18,10 @@ public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
-
+    @PostMapping("/addPAndAssign/{id}")
+    public Project addProjectAndAssignProjectToUser(@RequestBody Project p, @PathVariable String id) {
+        return projectService.addProjectAndAssignProjectToUser(p,id);
+    }
     @PostMapping
     public ResponseEntity<Project> createProject(@RequestBody Project project) {
         Project createdProject = projectService.createProject(project);

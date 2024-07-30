@@ -1,0 +1,640 @@
+<div class="scrum-pocker-tutorial" style="background-image: url('assets/images/p15.jpg'); background-size: cover; background-position: center; min-height: 100vh; display: flex; justify-content: center; align-items: center;">
+    <div class="home-section" style="background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px; text-align: center;">
+        <h1 style="display: inline;">Scrum Poker Online Tutorial</h1>
+
+        <div class="button-container">
+            
+            <button title="Add New" class="button-circle" (click)="toggletutorialModal()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="group-hover:fill-slate-800 group-active:stroke-slate-200 group-active:fill-slate-600 group-active:duration-0 duration-300">
+                  <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="1.5"></path>
+                  <path d="M8 12H16" stroke-width="1.5"></path>
+                  <path d="M12 16V8" stroke-width="1.5"></path>
+                </svg>
+              </button>
+              
+              <!-- Fenêtre modale -->
+              <div class="modal" [ngClass]="{'show': isTutorialModalOpen}">
+                <div class="modal-content">
+                  <textarea [(ngModel)]="newTutorial.description" placeholder="Enter description"></textarea>
+                  <div class="modal-actions">
+                    <button title="Save" class="button-circle" (click)="onSubmittutorial()">Save</button>
+                    <button title="Cancel" class="button-circle" (click)="canceltutorial()">Cancel</button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Message de succès -->
+              <div *ngIf="showSuccessMessage" class="success-message">
+                <svg class="wave" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0,256L11.4,240C22.9,224,46,192,69,192C91.4,192,114,224,137,234.7C160,245,183,235,206,213.3C228.6,192,251,160,274,149.3C297.1,139,320,149,343,181.3C365.7,213,389,267,411,282.7C434.3,299,457,277,480,250.7C502.9,224,526,192,549,181.3C571.4,171,594,181,617,208C640,235,663,277,686,256C708.6,235,731,149,754,122.7C777.1,96,800,128,823,165.3C845.7,203,869,245,891,224C914.3,203,937,117,960,112C982.9,107,1006,181,1029,197.3C1051.4,213,1074,171,1097,144C1120,117,1143,107,1166,133.3C1188.6,160,1211,224,1234,218.7C1257.1,213,1280,139,1303,133.3C1325.7,128,1349,192,1371,192C1394.3,192,1417,128,1429,96L1440,64L1440,320L1428.6,320C1417.1,320,1394,320,1371,320C1348.6,320,1326,320,1303,320C1280,320,1257,320,1234,320C1211.4,320,1189,320,1166,320C1142.9,320,1120,320,1097,320C1074.3,320,1051,320,1029,320C1005.7,320,983,320,960,320C937.1,320,914,320,891,320C868.6,320,846,320,823,320C800,320,777,320,754,320C731.4,320,709,320,686,320C662.9,320,640,320,617,320C594.3,320,571,320,549,320C525.7,320,503,320,480,320C457.1,320,434,320,411,320C388.6,320,366,320,343,320C320,320,297,320,274,320C251.4,320,229,320,206,320C182.9,320,160,320,137,320C114.3,320,91,320,69,320C45.7,320,23,320,11,320L0,320Z" fill-opacity="1"></path>
+                </svg>
+                <div class="icon-container">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" stroke-width="0" fill="currentColor" stroke="currentColor" class="icon">
+                    <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"></path>
+                  </svg>
+                </div>
+                <div class="message-text-container">
+                  <p class="message-text">Success message</p>
+                 
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" stroke-width="0" fill="none" stroke="currentColor" class="cross-icon">
+                  <path fill="currentColor" d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                </svg>
+              </div>
+            </div>
+            <div *ngIf="showdeleteMessage" class="error">
+                <div class="error__icon">
+                    <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m13 13h-2v-6h2zm0 4h-2v-2h2zm-1-15c-1.3132 0-2.61358.25866-3.82683.7612-1.21326.50255-2.31565 1.23915-3.24424 2.16773-1.87536 1.87537-2.92893 4.41891-2.92893 7.07107 0 2.6522 1.05357 5.1957 2.92893 7.0711.92859.9286 2.03098 1.6651 3.24424 2.1677 1.21325.5025 2.51363.7612 3.82683.7612 2.6522 0 5.1957-1.0536 7.0711-2.9289 1.8753-1.8754 2.9289-4.4189 2.9289-7.0711 0-1.3132-.2587-2.61358-.7612-3.82683-.5026-1.21326-1.2391-2.31565-2.1677-3.24424-.9286-.92858-2.031-1.66518-3.2443-2.16773-1.2132-.50254-2.5136-.7612-3.8268-.7612z" fill="#393a37"></path>
+                    </svg>
+                </div>
+                <div class="error__title">Delete done</div>
+                <div class="error__close">
+                    <svg height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m15.8333 5.34166-1.175-1.175-4.6583 4.65834-4.65833-4.65834-1.175 1.175 4.65833 4.65834-4.65833 4.6583 1.175 1.175 4.65833-4.6583 4.6583 4.6583 1.175-1.175-4.6583-4.6583z" fill="#393a37"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Liste des sections -->
+            <div *ngIf="Tutorial && Tutorial.length > 0">
+                <div *ngFor="let Tutorial of Tutorial" class="section-container">
+                    
+                    <p>{{ Tutorial.description }}</p>
+                   
+                    <button class="edit-button">
+                        <svg class="edit-svgIcon" (click)="edittutorial(Tutorial)"viewBox="0 0 512 512">
+                            <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                        </svg>
+                    </button>
+                    
+                    <button class="delete-button" (click)="deletetutorial(Tutorial.id)">
+                        <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                            <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                        </svg>
+                    </button>
+                    
+                    
+                </div>
+            
+            </div>
+            
+       
+        <a class="btn btn-primary btn-xl rounded-pill mt-5" (click)="learnMore()">Learn More</a>
+
+    </div> </div>
+    
+
+<input class="input" name="file" type="file">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon"><polyline points="16 16 12 12 8 16"></polyline><line y2="21" x2="12" y1="12" x1="12"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
+                      
+                      <div class="container">
+                        <h2 id="what-title" class="" (click)="toggleContent('what')">what</h2>
+                        <div id="what-content" class="content hidden">
+                         
+                            <!-- Bouton d'ajout -->
+                            <button title="Add New" class="button-circle" (click)="toggleWhatModal()">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="group-hover:fill-slate-800 group-active:stroke-slate-200 group-active:fill-slate-600 group-active:duration-0 duration-300">
+                                    <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="1.5"></path>
+                                    <path d="M8 12H16" stroke-width="1.5"></path>
+                                    <path d="M12 16V8" stroke-width="1.5"></path>
+                                </svg>
+                            </button>
+                    
+                            <!-- Fenêtre modale -->
+                            <div class="modal" [ngClass]="{'show': isModalOpen}">
+                                <div class="modal-content">
+                                    <textarea [(ngModel)]="newSection.description" placeholder="Enter description"></textarea>
+                                    <div class="modal-actions">
+                                        <button title="Save" class="button-circle" (click)="onSubmitWhat()">Save</button>
+                                        <button title="Cancel" class="button-circle" (click)="cancelWhat()">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <!-- Liste des sections -->
+                            <div *ngIf="whatSections && whatSections.length > 0">
+                                <div *ngFor="let section of whatSections" class="section-container">
+                                    
+                                    <p>{{ section.description }}</p>
+                                   
+                                    <button class="edit-button">
+                                        <svg class="edit-svgIcon" (click)="editWhatSection(section)"viewBox="0 0 512 512">
+                                            <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                                        </svg>
+                                    </button>
+                                    
+                                    <button class="delete-button"(click)="deleteWhatSection(section.id)">
+                                        <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                                            <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    
+           <!--  les images  -->
+
+           <div class="image-container">
+            <img src="assets/images/what-1.jpg" alt="Processus de Scrum Poker Online">
+            
+            <img src="assets/images/what-2.jpg" alt="Processus de Scrum Poker Online">
+            
+        </div>
+        <input class="input" name="file" type="file">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon"><polyline points="16 16 12 12 8 16"></polyline><line y2="21" x2="12" y1="12" x1="12"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
+               
+        <style>
+            
+        </style>
+         
+
+            
+                       
+                       
+                        <h2>Estimations à points :</h2>
+            <ul>
+                <li><strong>Fibonacci :</strong> 0, 1, 2, 3, 5, 8, 13, 21, etc.</li>
+                <li><strong>T-shirt sizing :</strong> XS, S, M, L, XL, etc.</li>
+                <li><strong>Estimations à points :</strong> basées sur la complexité ou l'effort relatif.</li>
+            </ul>
+                     
+              <!--      fin what-->
+        </div>
+       
+                
+
+
+
+    <div class="content-container">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6">
+                    <div class="p-5">
+                        <div class="container">
+                            <h2 id="why-title" class="" (click)="toggleContent('why')">why</h2>
+                            <div id="why-content" class="content hidden">
+                                <!-- Bouton d'ajout -->
+                                <button title="Add New" class="button-circle" (click)="toggleWhyModal()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="group-hover:fill-slate-800 group-active:stroke-slate-200 group-active:fill-slate-600 group-active:duration-0 duration-300">
+                                        <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="1.5"></path>
+                                        <path d="M8 12H16" stroke-width="1.5"></path>
+                                        <path d="M12 16V8" stroke-width="1.5"></path>
+                                    </svg>
+                                </button>
+                                
+                        
+                                <!-- Fenêtre modale -->
+                                <div class="modal" [ngClass]="{'show': isWhyModalOpen}">
+                                    <div class="modal-content">
+                                        <textarea [(ngModel)]="newWhy.description" placeholder="Enter description"></textarea>
+                                        <div class="modal-actions">
+                                            <button title="Save" class="button-circle" (click)="onSubmitWhy()">Save</button>
+                                            <button title="Cancel" class="button-circle" (click)="cancelWhy()">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                               
+                                <!-- Liste des sections -->
+                                <div *ngIf="whySections && whySections.length > 0">
+                                    <div *ngFor="let section of whySections" class="section-container">
+                                        
+                                        <p>{{ section.description }}</p>
+                                       
+                                        <button class="edit-button">
+                                            <svg class="edit-svgIcon" (click)="editWhySection(section)"viewBox="0 0 512 512">
+                                                <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                                            </svg>
+                                        </button>
+                                        
+                                        <button class="delete-button"(click)="deleteWhySection(section.id)">
+                                            <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                                                <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+      
+                <div class="col-lg-6">
+                    <div class="p-5">
+                        <img class="img-fluid rounded-circle" src="assets/images/p5.jpg" alt="..." />
+                        <div class="input-div">
+                            <input class="input" name="file" type="file">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon"><polyline points="16 16 12 12 8 16"></polyline><line y2="21" x2="12" y1="12" x1="12"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
+                          </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="content-container">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                
+                        <div class="container">
+                            <h2 id="Avantages-title" class="" (click)="toggleContent('Avantages')">Avantages et Limitations</h2>
+                            <div id="Avantages-content" class="content hidden">
+    <button title="Add New" class="button-circle" (click)="toggleAvantagesModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="group-hover:fill-slate-800 group-active:stroke-slate-200 group-active:fill-slate-600 group-active:duration-0 duration-300">
+            <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="1.5"></path>
+            <path d="M8 12H16" stroke-width="1.5"></path>
+            <path d="M12 16V8" stroke-width="1.5"></path>
+        </svg>
+    </button>
+ <!-- Fenêtre modale -->
+ <div class="modal" [ngClass]="{'show': isAvantagesModalOpen}">
+    <div class="modal-content">
+        <textarea [(ngModel)]="newAvantages.description" placeholder="Enter description"></textarea>
+        <div class="modal-actions">
+            <button title="Save" class="button-circle" (click)="onSubmitAvantages()">Save</button>
+            <button title="Cancel" class="button-circle" (click)="cancelAvantages()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<a routerLink="/projects" class="button-link">Go to Project Component</a>
+<!-- Liste des sections -->
+<div *ngIf="Avantages && Avantages.length > 0">
+    <div *ngFor="let section of Avantages" class="section-container">
+        
+        <p>{{ section.description }}</p>
+       
+    <button class="edit-button" >
+        <svg class="edit-svgIcon"(click)="editAvantages(section)"viewBox="0 0 512 512">
+            <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+        </svg>
+    </button>
+
+    <button class="delete-button"(click)="deleteAvantages(section.id)">
+        <svg class="delete-svgIcon" viewBox="0 0 448 512">
+            <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+        </svg>
+    </button>
+
+</div>
+</div>
+</div>
+
+
+                    
+            <div class="content-container">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <!-- Colonne de gauche -->
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <div class="container">
+                        <h2 id="who-title" class="" (click)="toggleContent('who')">who</h2>
+                        <div id="who-content" class="content hidden">
+                            <!-- Bouton d'ajout -->
+                            <button title="Add New" class="button-circle" (click)="toggleWhoModal()">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="group-hover:fill-slate-800 group-active:stroke-slate-200 group-active:fill-slate-600 group-active:duration-0 duration-300">
+                                    <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="1.5"></path>
+                                    <path d="M8 12H16" stroke-width="1.5"></path>
+                                    <path d="M12 16V8" stroke-width="1.5"></path>
+                                </svg>
+                            </button>
+                    
+                            <!-- Fenêtre modale -->
+                            <div class="modal" [ngClass]="{'show': isWhoModalOpen}">
+                                <div class="modal-content">
+                                    <textarea [(ngModel)]="newWho.description" placeholder="Enter description"></textarea>
+                                    <div class="modal-actions">
+                                        <button title="Save" class="button-circle" (click)="onSubmitWho()">Save</button>
+                                        <button title="Cancel" class="button-circle" (click)="cancelWho()">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <!-- Liste des sections -->
+                            <div *ngIf="whoSections && whoSections.length > 0">
+                                <div *ngFor="let section of whoSections" class="section-container">
+                                    
+                                    <p>{{ section.description }}</p>
+                                   
+                                    <button class="edit-button">
+                                        <svg class="edit-svgIcon" (click)="editWhoSection(section)" viewBox="0 0 512 512">
+                                            <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                                        </svg>
+                                    </button>
+                                    
+                                    <button class="delete-button" (click)="deleteWhoSection(section.id)">
+                                        <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                                            <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      
+            <!-- Colonne de droite -->
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <img class="img-fluid rounded-circle" src="assets/images/p5.jpg" alt="..." />
+                    <div class="input-div">
+                        <input class="input" name="file" type="file">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                            <polyline points="16 16 12 12 8 16"></polyline>
+                            <line y2="21" x2="12" y1="12" x1="12"></line>
+                            <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+                            <polyline points="16 16 12 12 8 16"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            
+                            <div class="content-container">
+                                <div class="container px-5">
+                                    <div class="row gx-5 align-items-center">
+                                        <div class="col-lg-6">
+                                            <div class="p-5">
+                                                <div class="container">
+                                                    <h2 id="What If-title" class="" (click)="toggleContent('What If')">What If</h2>
+                                                    <div id="What If-content" class="content hidden">
+                                                        <!-- Add Button -->
+                                                        <button title="Add New" class="button-circle" (click)="toggleWhatifModal()">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="group-hover:fill-slate-800 group-active:stroke-slate-200 group-active:fill-slate-600 group-active:duration-0 duration-300">
+                                                                <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="1.5"></path>
+                                                                <path d="M8 12H16" stroke-width="1.5"></path>
+                                                                <path d="M12 16V8" stroke-width="1.5"></path>
+                                                            </svg>
+                                                        </button>
+                            
+                                                        <!-- Modal window -->
+                                                        <div class="modal" [ngClass]="{'show': isWhatifModalOpen}">
+                                                            <div class="modal-content">
+                                                                <textarea [(ngModel)]="newwhatif.description" placeholder="Enter description"></textarea>
+                                                                <div class="modal-actions">
+                                                                    <button title="Save" class="button-circle" (click)="onSubmitWhatif()">Save</button>
+                                                                    <button title="Cancel" class="button-circle" (click)="cancelWhatif()">Cancel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                       
+                            
+                                                        <!-- List of sections -->
+                                                        <div *ngIf="whatifSections && whatifSections.length > 0">
+                                                            <div *ngFor="let section of whatifSections" class="section-container">
+                                                                <p>{{ section.description }}</p>
+                                                                <button class="edit-button" (click)="editWhatifSection(section)">
+                                                                    <svg class="edit-svgIcon" viewBox="0 0 512 512">
+                                                                        <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                                                                    </svg>
+                                                                </button>
+                                                                <button class="delete-button" (click)="deleteWhatifSection(section.id)">
+                                                                    <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                                                                        <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                        <div class="col-lg-6">
+                                            <div class="p-5">
+                                                <img class="img-fluid rounded-circle" src="assets/images/p1.jpg" alt="Adaptations de Scrum Poker Online" />
+                                                <div class="input-div">
+                                                    <input class="input" name="file" type="file">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                                                        <polyline points="16 16 12 12 8 16"></polyline>
+                                                        <line y2="21" x2="12" y1="12" x1="12"></line>
+                                                        <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+                                                        <polyline points="16 16 12 12 8 16"></polyline>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>          
+                </div>
+            </div>  
+             
+                     
+            
+                            <h2 id="Outils de Visioconférence-title" class="" (click)="toggleContent('Outils de Visioconférence')">Outils de Visioconférence</h2>
+                            <div id="Outils de Visioconférence-content" class="content hidden"> <button title="Add New" class="button-circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="group-hover:fill-slate-800 group-active:stroke-slate-200 group-active:fill-slate-600 group-active:duration-0 duration-300">
+                                    <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="1.5"></path>
+                                    <path d="M8 12H16" stroke-width="1.5"></path>
+                                    <path d="M12 16V8" stroke-width="1.5"></path>
+                                </svg>
+                            </button>
+                
+                            <button class="edit-button">
+                                <svg class="edit-svgIcon" viewBox="0 0 512 512">
+                                    <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                                </svg>
+                            </button>
+                
+                            <button class="delete-button">
+                                <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                                    <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                                </svg>
+                            </button>
+                            <p>Pour la communication en ligne, il est recommandé d'utiliser :</p>
+                            <ul>
+                                <li>Zoom</li>
+                                <li>Microsoft Teams</li>
+                                <li>Tout autre outil de visioconférence</li>
+                            </ul></div>
+                        
+                       
+                    
+                            <h2 id="Outils-Specifiques-pour-Scrum-Poker-title" class="" (click)="toggleContent('Outils-Specifiques-pour-Scrum-Poker')">Outils Spécifiques pour Scrum Poker</h2>
+                            <div id="Outils-Specifiques-pour-Scrum-Poker-content" class="content hidden"> 
+                           
+
+                         <button title="Add New" class="button-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="group-hover:fill-slate-800 group-active:stroke-slate-200 group-active:fill-slate-600 group-active:duration-0 duration-300">
+                                <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="1.5"></path>
+                                <path d="M8 12H16" stroke-width="1.5"></path>
+                                <path d="M12 16V8" stroke-width="1.5"></path>
+                            </svg>
+                        </button>
+            
+                        <button class="edit-button">
+                            <svg class="edit-svgIcon" viewBox="0 0 512 512">
+                                <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                            </svg>
+                        </button>
+            
+                        <button class="delete-button">
+                            <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                                <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                            </svg>
+                        </button>
+                        <p>Pour la facilitation des sessions de Scrum Poker, il est recommandé d'utiliser </p>
+                        <ul>
+                            <li>Planning Poker Online</li>
+                            <li>Agile Poker</li>
+                        </ul>
+                            </div>
+
+    
+   
+    
+        
+
+   
+    <div class="content-container">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6">
+                    <div class="p-5">
+                       <h2 id="dashboard-title" class="" (click)="toggleContent('dashboard-example')">Gestion des Sessions d'Estimation</h2> 
+                       <button title="Add New" class="button-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="group-hover:fill-slate-800 group-active:stroke-slate-200 group-active:fill-slate-600 group-active:duration-0 duration-300">
+                            <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="1.5"></path>
+                            <path d="M8 12H16" stroke-width="1.5"></path>
+                            <path d="M12 16V8" stroke-width="1.5"></path>
+                        </svg>
+                    </button>
+        
+                    <button class="edit-button">
+                        <svg class="edit-svgIcon" viewBox="0 0 512 512">
+                            <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                        </svg>
+                    </button>
+        
+                    <button class="delete-button">
+                        <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                            <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                        </svg>
+                    </button>
+                        <div id="dashboard-example-content" class="content hidden">
+                               
+                              <p>La gestion des sessions d'estimation consiste à évaluer la taille et la complexité des tâches à réaliser en équipe, utilisant des méthodes comme Scrum Poker pour parvenir à un consensus rapide et précis. Cela permet de planifier efficacement les efforts nécessaires pour chaque élément du projet.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-5">
+                          
+            <img class="img-fluid rounded-circle" src="assets/images/p12.jpg" alt="Adaptations de Scrum Poker Online" />
+            <div class="input-div">
+                <input class="input" name="file" type="file">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon"><polyline points="16 16 12 12 8 16"></polyline><line y2="21" x2="12" y1="12" x1="12"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
+              </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+    </div>
+
+    <div class="content-container">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6">
+                    <div class="p-5">
+                       <h2 id="dashboard-title" class="" (click)="toggleContent('dashboard-example')">Planification des Sprints</h2> 
+                       <button title="Add New" class="button-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="group-hover:fill-slate-800 group-active:stroke-slate-200 group-active:fill-slate-600 group-active:duration-0 duration-300">
+                            <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="1.5"></path>
+                            <path d="M8 12H16" stroke-width="1.5"></path>
+                            <path d="M12 16V8" stroke-width="1.5"></path>
+                        </svg>
+                    </button>
+        
+                    <button class="edit-button">
+                        <svg class="edit-svgIcon" viewBox="0 0 512 512">
+                            <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                        </svg>
+                    </button>
+        
+                    <button class="delete-button">
+                        <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                            <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                        </svg>
+                    </button>
+                        <div id="dashboard-example-content" class="content hidden">
+                              
+                              <p>
+                                "La planification des sprints est une étape cruciale dans la méthodologie agile, permettant de structurer et d'organiser efficacement le travail à réaliser sur une période définie."
+
+</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-5">
+                          
+            <img class="img-fluid rounded-circle" src="assets/images/p8.jpg" alt="Adaptations de Scrum Poker Online" />
+            <div class="input-div">
+                        <input class="input" name="file" type="file">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon"><polyline points="16 16 12 12 8 16"></polyline><line y2="21" x2="12" y1="12" x1="12"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-container">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                           <h2 id="dashboard-title" class="" (click)="toggleContent('dashboard-example')">Suivi des Rétrospectives</h2> 
+                           <button title="Add New" class="button-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="group-hover:fill-slate-800 group-active:stroke-slate-200 group-active:fill-slate-600 group-active:duration-0 duration-300">
+                                <path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="1.5"></path>
+                                <path d="M8 12H16" stroke-width="1.5"></path>
+                                <path d="M12 16V8" stroke-width="1.5"></path>
+                            </svg>
+                        </button>
+            
+                        <button class="edit-button">
+                            <svg class="edit-svgIcon" viewBox="0 0 512 512">
+                                <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                            </svg>
+                        </button>
+            
+                        <button class="delete-button">
+                            <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                                <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                            </svg>
+                        </button>
+                            
+                            <div id="dashboard-example-content" class="content hidden">
+                               
+                                  <p>"Utilisez Scrum Poker pour faciliter le suivi des rétrospectives et optimiser la planification dans votre méthodologie agile."
+    
+    </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                              
+                <img class="img-fluid rounded-circle" src="assets/images/p13.jpg" alt="Adaptations de Scrum Poker Online" />
+                <div class="input-div">
+                    <input class="input" name="file" type="file">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon"><polyline points="16 16 12 12 8 16"></polyline><line y2="21" x2="12" y1="12" x1="12"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
+                  </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+   
