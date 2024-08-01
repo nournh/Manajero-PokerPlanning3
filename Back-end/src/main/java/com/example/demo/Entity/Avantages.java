@@ -1,16 +1,26 @@
 package com.example.demo.Entity;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "what_sections")
-public class WhatSection {
+
+@Document(collection = " Avantages")
+public class  Avantages {
+
     @Id
     private String id;
-    private String title;
-    private String description;
 
-    // Getters and setters for id
+
+    private String description;
+    private boolean published;
+
+    public  Avantages() {
+    }
+
+    public Avantages( String description) {
+
+        this.description = description;
+        this.published = published;
+    }
     public String getId() {
         return id;
     }
@@ -19,16 +29,8 @@ public class WhatSection {
         this.id = id;
     }
 
-    // Getters and setters for title
-    public String getTitle() {
-        return title;
-    }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
-    // Getters and setters for description
     public String getDescription() {
         return description;
     }
@@ -36,4 +38,13 @@ public class WhatSection {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public boolean isPublished() {
+        return published;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
+    // Getters and Setters
 }

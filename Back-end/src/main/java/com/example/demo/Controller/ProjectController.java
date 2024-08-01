@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +18,10 @@ public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
-
+    @PostMapping("/addPAndAssign/{id}")
+    public Project addProjectAndAssignProjectToUser(@RequestBody Project p, @PathVariable String id) {
+        return projectService.addProjectAndAssignProjectToUser(p,id);
+    }
     @PostMapping
     public ResponseEntity<Project> createProject(@RequestBody Project project) {
         Project createdProject = projectService.createProject(project);
@@ -47,4 +51,8 @@ public class ProjectController {
         projectService.deleteProject(id);
         return ResponseEntity.noContent().build();
     }
+
+
 }
+
+

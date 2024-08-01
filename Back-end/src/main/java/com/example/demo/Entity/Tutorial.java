@@ -1,28 +1,26 @@
 package com.example.demo.Entity;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "why_sections")
-public class WhySection {
+
+@Document(collection = "tutorials")
+public class Tutorial {
 
     @Id
     private String id;
 
-    private String title;
 
     private String description;
+    private boolean published;
 
-    // Constructors, getters, and setters
-    // Constructor
-    public WhySection() {}
-
-    public WhySection(String title, String description) {
-        this.title = title;
-        this.description = description;
+    public Tutorial() {
     }
 
-    // Getters and setters
+    public Tutorial( String description) {
+
+        this.description = description;
+        this.published = published;
+    }
     public String getId() {
         return id;
     }
@@ -31,13 +29,7 @@ public class WhySection {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getDescription() {
         return description;
@@ -46,4 +38,13 @@ public class WhySection {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public boolean isPublished() {
+        return published;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
+    // Getters and Setters
 }
