@@ -1,10 +1,4 @@
-package com.example.demo.Entity.enums;
+package  com.example.demo.Entity.enums;
 
-
-
-
-public enum CurrentState {
-    SCHEDULED,
-    EXPIRE,
-    TERMINATED
+public enum CurrentState {SCHEDULED,EXPIRE,TERMINATED
 }

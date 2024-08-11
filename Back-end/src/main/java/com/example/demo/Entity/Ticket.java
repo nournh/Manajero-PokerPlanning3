@@ -1,27 +1,28 @@
 package com.example.demo.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-import tn.esprit.pockerplanning.entities.enums.Complexity;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Document(collection = "cards") // Specifies the MongoDB collection name
-public class Card {
+@Document(collection = "tickets") // Specifies the MongoDB collection name
+public class Ticket {
 
     @Id
     @Setter(AccessLevel.NONE)
     String id; // MongoDB uses String for IDs (typically ObjectId)
 
-    @Field("id_user") // Maps the field to "id_user" in MongoDB
-    long idUser;
+    String description;
+    String status;
 
-    @Field("complexity") // Maps the enum to a string field in MongoDB
-    Complexity complexity;
+    @JsonIgnore
+    @DBRef(lazy = true) // Reference to the Project document
+    Project project;
 }
-

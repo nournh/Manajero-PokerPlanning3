@@ -1,9 +1,4 @@
-package com.example.demo.Entity.enums;
+package  com.example.demo.Entity.enums;
 
-
-
-public enum Role {
-    ADMINISTRATOR,
-    PROJECTMANAGER,
-    DEVELOPER
+public enum Role {  ADMINISTRATOR,PROJECTMANAGER,DEVELOPER
 }

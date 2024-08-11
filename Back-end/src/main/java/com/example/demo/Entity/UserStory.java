@@ -1,129 +1,96 @@
 package com.example.demo.Entity;
-
-import com.example.demo.Entity.enums.Status;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import tn.esprit.pockerplanning.entities.enums.Complexity;
+import tn.esprit.pockerplanning.entities.enums.StatusUs;
 
 import java.time.LocalDate;
 import java.util.Set;
 
-@Document(collection = "userStories")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Document(collection = "user_stories")
 public class UserStory {
 
     @Id
-    private String id;
+    @Setter(AccessLevel.NONE)
+    String id; // MongoDB uses String for IDs
 
-    @Field
-    private String description;
+    String description;
+    int duration;
+    int priority;
+    LocalDate startDate;
+    LocalDate endDate;
 
-    @Field
-    private int duration;
+    @Field("final_complexity")
+    Complexity finalComplexity;
 
-    @Field
-    private int priority;
+    @Field("status")
+    StatusUs status;
 
-    @Field
-    private LocalDate startDate;
+    @DBRef(lazy = true)
+    Sprint sprint;
 
-    @Field
-    private LocalDate endDate;
+    @DBRef(lazy = true)
+    Set<Note> noteSet;
 
-    @Field
-    private Status status;
+    @DBRef(lazy = true)
+    Set<Card> cardSet;
 
-    @DBRef
-    private Sprint sprint;
-
-    @DBRef
-    private Set<Card> cardSet;
-
-    // Default Constructor
-    public UserStory() {}
-
-    // Parameterized Constructor
-    public UserStory(String description, int duration, int priority, LocalDate startDate, LocalDate endDate, Status status, Sprint sprint, Set<Card> cardSet) {
-        this.description = description;
-        this.duration = duration;
-        this.priority = priority;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.status = status;
-        this.sprint = sprint;
-        this.cardSet = cardSet;
+    // Methods for accessing notes and cards
+    public String getUserNoteForUserStory(long idUser) {
+        for (Note note : noteSet) {
+            if (note.getIdUser() == idUser) {
+                return note.getDescription();
+            }
+        }
+        return null;
     }
 
-    // Getters and Setters
-    public String getId() {
+    public Note getNoteSet(long idUser) {
+        for (Note note : noteSet) {
+            if (note.getIdUser() == idUser) {
+                return note;
+            }
+        }
+        return null;
+    }
+
+    public int getUserEstimationForUserStory(long idUser) {
+        for (Card card : cardSet) {
+            if (card.getIdUser() == idUser) {
+                return card.getComplexity().getValue();
+            }
+        }
+        return -1;
+    }
+
+    public Card getCardSet(long idUser) {
+        for (Card card : cardSet) {
+            if (card.getIdUser() == idUser) {
+                return card;
+            }
+        }
+        return null;
+    }
+
+    public void setUserStoryId(String userStoryId) {
+        this.id = userStoryId;
+    }
+
+    public String getUserStoryId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public Sprint getSprint() {
-        return sprint;
-    }
-
-    public void setSprint(Sprint sprint) {
-        this.sprint = sprint;
-    }
-
-    public Set<Card> getCardSet() {
-        return cardSet;
-    }
-
-    public void setCardSet(Set<Card> cardSet) {
-        this.cardSet = cardSet;
+    public void setCardSetId(String cardSetId) {
+        this.id = cardSetId;
     }
 }

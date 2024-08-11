@@ -1,5 +1,9 @@
 package com.example.demo.Entity;
 
+import com.example.demo.Entity.Session;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -8,122 +12,32 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.time.LocalDate;
 import java.util.Set;
 
-@Document(collection = "sprint")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Document(collection = "sprints") // Specifies the MongoDB collection name
 public class Sprint {
 
     @Id
-    private String id;
+    @Setter(AccessLevel.NONE)
+    String id; // MongoDB uses String for IDs (typically ObjectId)
 
-    @Field
-    private String name;
+    String name;
+    LocalDate startDate;
+    LocalDate endDate;
+    int duration;
+    String objective;
 
-    @Field
-    private LocalDate startDate;
+    @DBRef // Reference to the Project document
+    Project project;
 
-    @Field
-    private LocalDate endDate;
+    @DBRef // Reference to the Session document
+    Session session;
 
-    @Field
-    private int duration;
+    @JsonIgnore
+    @DBRef(lazy = true) // Reference to a set of UserStory documents
+    Set<UserStory> userStorySet;
 
-    @Field
-    private String objective;
-
-    @DBRef
-    private Project project;
-
-    @DBRef
-    private Session session;
-
-    @DBRef
-    private Set<UserStory> userStorySet;
-
-    // Default Constructor
-    public Sprint() {}
-
-    // Parameterized Constructor
-    public Sprint(String name, LocalDate startDate, LocalDate endDate, int duration, String objective,
-                  Project project, Session session, Set<UserStory> userStorySet) {
-        this.name = name;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.duration = duration;
-        this.objective = objective;
-        this.project = project;
-        this.session = session;
-        this.userStorySet = userStorySet;
-    }
-
-    // Getters and Setters
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public String getObjective() {
-        return objective;
-    }
-
-    public void setObjective(String objective) {
-        this.objective = objective;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
-    public Session getSession() {
-        return session;
-    }
-
-    public void setSession(Session session) {
-        this.session = session;
-    }
-
-    public Set<UserStory> getUserStorySet() {
-        return userStorySet;
-    }
-
-    public void setUserStorySet(Set<UserStory> userStorySet) {
-        this.userStorySet = userStorySet;
-    }
 }

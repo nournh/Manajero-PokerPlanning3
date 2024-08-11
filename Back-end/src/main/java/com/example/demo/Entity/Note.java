@@ -1,18 +1,22 @@
 package com.example.demo.Entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-import tn.esprit.pockerplanning.entities.enums.Complexity;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Document(collection = "cards") // Specifies the MongoDB collection name
-public class Card {
+@Document(collection = "notes") // Specifies the MongoDB collection name
+public class Note {
 
     @Id
     @Setter(AccessLevel.NONE)
@@ -21,7 +25,12 @@ public class Card {
     @Field("id_user") // Maps the field to "id_user" in MongoDB
     long idUser;
 
-    @Field("complexity") // Maps the enum to a string field in MongoDB
-    Complexity complexity;
+    String description;
+
+    LocalDate date;
+
+    @JsonIgnore
+    @DBRef // Refers to another MongoDB document (UserStory)
+  UserStory userStory;
 }
 
