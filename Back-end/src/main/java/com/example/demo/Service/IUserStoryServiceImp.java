@@ -152,7 +152,7 @@ public class IUserStoryServiceImp implements IUserStoryService{
                                         Long cardUserId = card.getIdUser();
                                         User cardUser = null;
                                         if (cardUserId != null) {
-                                            cardUser = userRepo.findById(cardUserId).orElse(null);
+                                            cardUser = userRepo.findById(String.valueOf(cardUserId)).orElse(null);
                                         }
                                         cardDetails.put("FirstName", cardUser != null ? cardUser.getFirstname() : "Unassigned");
                                         cardDetails.put("LastName", cardUser != null ? cardUser.getLastname() : "Unassigned");
@@ -188,7 +188,7 @@ public class IUserStoryServiceImp implements IUserStoryService{
             List<Map<String, Object>> response = new ArrayList<>();
 
             // Récupérer l'utilisateur spécifié
-            User user = userRepo.findById(userId).orElse(null);
+            User user = userRepo.findById(String.valueOf(userId)).orElse(null);
             if (user == null) {
                 return ResponseEntity.notFound().build(); // Utilisateur non trouvé
             }
@@ -287,7 +287,7 @@ public class IUserStoryServiceImp implements IUserStoryService{
                                         Long noteUserId = note.getIdUser();
                                         User notesUser = null;
                                         if (noteUserId != null) {
-                                            notesUser = userRepo.findById(noteUserId).orElse(null);
+                                            notesUser = userRepo.findById(String.valueOf(noteUserId)).orElse(null);
                                         }
                                         noteDetails.put("FirstName", notesUser != null ? notesUser.getFirstname() : "Unassigned");
                                         cardsList.add(noteDetails);
@@ -471,7 +471,7 @@ public class IUserStoryServiceImp implements IUserStoryService{
                 Long cardUserId = card.getIdUser();
                 User cardUser = null;
                 if (cardUserId != null) {
-                    cardUser = userRepo.findById(cardUserId).orElse(null);
+                    cardUser = userRepo.findById(String.valueOf(cardUserId)).orElse(null);
                 }
                 cardDetails.put("FirstName", cardUser != null ? cardUser.getFirstname() : "Unassigned");
                 cardsList.add(cardDetails);

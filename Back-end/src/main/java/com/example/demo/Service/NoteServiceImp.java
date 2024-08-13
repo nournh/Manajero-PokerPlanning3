@@ -70,7 +70,7 @@ public class NoteServiceImp implements NoteService {
 
                 // Récupérer l'utilisateur associé à la note
                 User user;
-                user = userRepo.findById((note.getIdUser())).orElse(null);
+                user = userRepo.findById(String.valueOf((note.getIdUser()))).orElse(null);
                 if (user != null) {
                     noteDetails.put("FirstName", user.getFirstname());
                     noteDetails.put("LastName", user.getLastname());

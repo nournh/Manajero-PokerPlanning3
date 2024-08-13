@@ -27,12 +27,12 @@ public class IUserServicesImp implements IUserServices {
 
     @Override
     public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
+        return userRepository.findById(String.valueOf(id)).orElse(null);
     }
 
     @Override
     public User updateProfil(User user) {
-        User existinguser = userRepository.findById(user.getId()).orElse(null);
+        User existinguser = userRepository.findById(String.valueOf(Long.valueOf(user.getId()))).orElse(null);
         if (existinguser != null) {
             if (user.getFirstname() != null) {
                 existinguser.setFirstname(user.getFirstname());
@@ -58,7 +58,7 @@ public class IUserServicesImp implements IUserServices {
 
     @Override
     public User updatePassword(Long id, String password) {
-        User user =userRepository.findById((id)).orElse(null);
+        User user =userRepository.findById(String.valueOf((id))).orElse(null);
         user.setPassword(passwordEncoder.encode(password));
         return userRepository.save(user);
     }
@@ -66,7 +66,7 @@ public class IUserServicesImp implements IUserServices {
     @Override
     public User updateImage(Long id, MultipartFile file) {
         try {
-            User user = userRepository.findById((id)).orElse(null);
+            User user = userRepository.findById(String.valueOf((id))).orElse(null);
 
             // Upload the image file to Cloudinary
             Map uploadResult = cloudinaryService.upload(file);
@@ -95,7 +95,7 @@ public class IUserServicesImp implements IUserServices {
 
     @Override
     public User activateUser(Long userId) {
-      User user  = userRepository.findById((userId)).orElse(null);
+      User user  = userRepository.findById(String.valueOf((userId))).orElse(null);
         if (user !=null) {
             user.setActive(true); // Activer l'utilisateur
             return userRepository.save(user);
@@ -105,7 +105,7 @@ public class IUserServicesImp implements IUserServices {
     }
     @Override
     public User deactivateUser(Long userId) {
-        User user = userRepository.findById((userId)).orElse(null);
+        User user = userRepository.findById(String.valueOf((userId))).orElse(null);
         if (user != null) {
             user.setActive(false);
             return userRepository.save(user);

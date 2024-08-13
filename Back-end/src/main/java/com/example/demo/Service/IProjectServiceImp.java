@@ -31,7 +31,7 @@ public class IProjectServiceImp implements IProjectService {
     public Project addProjectAndAssignProjectToUser(Project p, long id) {
 
         projectRepository.save(p);
-        User user = userRepository.findById((id)).orElseThrow(() -> new IllegalArgumentException("Invalid user Id"));
+        User user = userRepository.findById(String.valueOf((id))).orElseThrow(() -> new IllegalArgumentException("Invalid user Id"));
         // Vérifier si le Set de projets de l'utilisateur est null, puis l'initialiser si nécessaire
         if (user.getProjectSet() == null) {
             user.setProjectSet(new HashSet<>());
@@ -120,7 +120,7 @@ public class IProjectServiceImp implements IProjectService {
             if(p.getNbDeveloper()>=idDevelopers.size()){
                 for (Long idDeveloper : idDevelopers) {
 
-                    User u = userRepository.findById(idDeveloper).orElseThrow(() -> new IllegalArgumentException("User does not exist!"));
+                    User u = userRepository.findById(String.valueOf(idDeveloper)).orElseThrow(() -> new IllegalArgumentException("User does not exist!"));
                    // if (u.getRole().equals("DEVELOPER")) {
                         u.getProjectSet().add(p);
                   //  } else {
@@ -187,7 +187,7 @@ public class IProjectServiceImp implements IProjectService {
             project = projectRepository.save(project);  // Persist the project
 
             // Retrieve the user from the database
-            User user = userRepository.findById(userId)
+            User user = userRepository.findById(String.valueOf(userId))
                     .orElseThrow(() -> new IllegalArgumentException("Invalid user Id"));
 
             // Associate the user with the project (project is now saved)
