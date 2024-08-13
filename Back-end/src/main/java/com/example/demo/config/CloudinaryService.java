@@ -1,4 +1,4 @@
-package tn.esprit.pockerplanning.config;
+package com.example.demo.config;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;

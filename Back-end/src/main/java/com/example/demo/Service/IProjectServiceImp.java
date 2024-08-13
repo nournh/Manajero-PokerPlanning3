@@ -1,10 +1,5 @@
 package com.example.demo.Service;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.Entity.Project;
 import com.example.demo.Entity.User;
 import com.example.demo.Entity.enums.Domain;
@@ -12,6 +7,14 @@ import com.example.demo.Entity.enums.Role;
 import com.example.demo.Entity.enums.StatusProject;
 import com.example.demo.Repositories.ProjectRepository;
 import com.example.demo.Repositories.UserRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -28,7 +31,7 @@ public class IProjectServiceImp implements IProjectService {
     public Project addProjectAndAssignProjectToUser(Project p, long id) {
 
         projectRepository.save(p);
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id"));
+        User user = userRepository.findById((id)).orElseThrow(() -> new IllegalArgumentException("Invalid user Id"));
         // Vérifier si le Set de projets de l'utilisateur est null, puis l'initialiser si nécessaire
         if (user.getProjectSet() == null) {
             user.setProjectSet(new HashSet<>());
@@ -58,11 +61,7 @@ public class IProjectServiceImp implements IProjectService {
         List<Project> projectsList = projectRepository.findAll();
         List<Project> filteredProjects = new ArrayList<>();
 
-        for (Project project : projectsList) {
-            if (project.getBadget() != 0) { // Filtrer les projets dont le budget est différent de zéro
-                filteredProjects.add(project);
-            }
-        }
+
 
         return filteredProjects;
     }
@@ -76,11 +75,7 @@ public class IProjectServiceImp implements IProjectService {
         Set<Project> projectsSet = projectRepository.findByUserSetId(id);
         List<Project> projectsList = new ArrayList<>();
 
-        for (Project project : projectsSet) {
-            if (project.getBadget() != 0) { // Filtrer les projets dont le budget est différent de zéro
-                projectsList.add(project);
-            }
-        }
+
 
         return projectsList;
     }
@@ -171,17 +166,8 @@ public class IProjectServiceImp implements IProjectService {
         List<Project> projects = getAllProjetcs(); // Suppose que vous avez une méthode pour obtenir tous les projets
         List<Project> filteredProjects = new ArrayList<>();
 
-        for (Project project : projects) {
-            if ((badget == null || project.getBadget()==(badget)) &&
-                    (startDate == null || project.getStartDate().equals(startDate)) &&
-                    (endDate == null || project.getEndDate().equals(endDate)) &&
-                    (status == null || project.getStatusProject().equals(status)) &&
-                    (domain == null || project.getDomain().equals(domain)) &&
-                    (name == null || project.getName().contains(name)) &&
-                    (nbDeveloper == null || project.getNbDeveloper()==(nbDeveloper))) {
-                filteredProjects.add(project);
-            }
-        }
+
+
 
         return filteredProjects;
     }

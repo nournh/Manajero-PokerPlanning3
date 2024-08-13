@@ -11,7 +11,7 @@ import java.util.Set;
 public class Message {
 
     @Id
-    private String id;
+    private long id;
 
     @Field
     private long value;
@@ -33,11 +33,11 @@ public class Message {
     }
 
     // Getters and Setters
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

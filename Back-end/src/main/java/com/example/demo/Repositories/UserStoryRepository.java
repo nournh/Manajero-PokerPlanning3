@@ -11,8 +11,9 @@ import java.util.Set;
 public interface UserStoryRepository extends MongoRepository<UserStory, Long> {
     Set<UserStory> findUserStoryBySprintId(Long id);
 //Rihab
-    @Query("SELECT u.cardSet FROM UserStory u WHERE u.id = :userStoryId")
+    @Query("SELECT u.cardSet FROM UserStory u WHERE u.id = serStoryId")
     List<Card> findCardsByUserStoryId(@Param("userStoryId") Long userStoryId);
     List<UserStory> findBySprintId(long idSprint);
+
 
 }

@@ -1,4 +1,4 @@
-package tn.esprit.pockerplanning.config;
+package com.example.demo.config;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -13,8 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import tn.esprit.pockerplanning.repositories.UserRepository;
-import tn.esprit.pockerplanning.services.IJWTServices;
+import com.example.demo.Repositories.UserRepository;
+import com.example.demo.Service.IJWTServices;
 
 import java.io.IOException;
 @Component
@@ -24,7 +24,7 @@ public class JwtAuthenticationFilter  extends OncePerRequestFilter {
      private final UserDetailsService userDetailsService;
     private final UserRepository userRepository;
 
-    @Override
+
     protected void doFilterInternal(
             @NotNull HttpServletRequest request,
             @NotNull HttpServletResponse response,
@@ -61,12 +61,17 @@ public class JwtAuthenticationFilter  extends OncePerRequestFilter {
                       userDetails.getAuthorities()
               );
               authToken.setDetails(
-                      new WebAuthenticationDetailsSource().buildDetails(request)
+                      new WebAuthenticationDetailsSource().buildDetails((HttpServletRequest) request)
               );
               SecurityContextHolder.getContext().setAuthentication(authToken);
 
           }
         }
         filterChain.doFilter(request,response);
+    }
+
+
+    protected void doFilterInternal(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, javax.servlet.FilterChain filterChain) throws javax.servlet.ServletException, IOException {
+
     }
 }

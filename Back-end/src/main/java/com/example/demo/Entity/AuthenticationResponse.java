@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class AuthenticationResponse {
 
     @Id
-    String id; // This is the unique identifier for MongoDB documents
+    long id; // This is the unique identifier for MongoDB documents
 
     String accessToken;
     String refreshToken;

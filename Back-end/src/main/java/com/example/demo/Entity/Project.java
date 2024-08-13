@@ -23,7 +23,7 @@ public class Project {
 
     @Id
     @Setter(AccessLevel.NONE)
-    String id; // MongoDB uses String for IDs (typically ObjectId)
+    long id; // MongoDB uses String for IDs (typically ObjectId)
 
     String name;
     LocalDate startDate;

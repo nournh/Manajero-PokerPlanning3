@@ -8,8 +8,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import tn.esprit.pockerplanning.config.CloudinaryService;
-import tn.esprit.pockerplanning.config.EmailService;
+import com.example.demo.config.CloudinaryService;
+import com.example.demo.config.EmailService;
 import com.example.demo.Entity.*;
 import com.example.demo.Entity.enums.Complexity;
 import com.example.demo.Entity.enums.Role;
@@ -127,7 +127,7 @@ private final CardRepository cardRepository;
         emailService.sendHtmlEmail(mail);
 
         // Créer les cartes pour l'utilisateur
-        createCardsForUser(savedUser.getId());
+        createCardsForUser(Long.parseLong(String.valueOf(savedUser.getId())));
 
         // Retournez la réponse HTTP avec l'utilisateur enregistré
         return ResponseEntity.ok(savedUser);

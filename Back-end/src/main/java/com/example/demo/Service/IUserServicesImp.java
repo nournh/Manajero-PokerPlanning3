@@ -1,19 +1,17 @@
 package com.example.demo.Service;
 
+import com.example.demo.Entity.User;
+import com.example.demo.Repositories.UserRepository;
+import com.example.demo.config.CloudinaryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import tn.esprit.pockerplanning.config.CloudinaryService;
-import com.example.demo.Entity.User;
-import com.example.demo.Repositories.UserRepository;
 
 import java.io.IOException;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -60,7 +58,7 @@ public class IUserServicesImp implements IUserServices {
 
     @Override
     public User updatePassword(Long id, String password) {
-        User user =userRepository.findById(id).orElse(null);
+        User user =userRepository.findById((id)).orElse(null);
         user.setPassword(passwordEncoder.encode(password));
         return userRepository.save(user);
     }
@@ -68,7 +66,7 @@ public class IUserServicesImp implements IUserServices {
     @Override
     public User updateImage(Long id, MultipartFile file) {
         try {
-            User user = userRepository.findById(id).orElse(null);
+            User user = userRepository.findById((id)).orElse(null);
 
             // Upload the image file to Cloudinary
             Map uploadResult = cloudinaryService.upload(file);
@@ -97,7 +95,7 @@ public class IUserServicesImp implements IUserServices {
 
     @Override
     public User activateUser(Long userId) {
-      User user  = userRepository.findById(userId).orElse(null);
+      User user  = userRepository.findById((userId)).orElse(null);
         if (user !=null) {
             user.setActive(true); // Activer l'utilisateur
             return userRepository.save(user);
@@ -107,7 +105,7 @@ public class IUserServicesImp implements IUserServices {
     }
     @Override
     public User deactivateUser(Long userId) {
-        User user = userRepository.findById(userId).orElse(null);
+        User user = userRepository.findById((userId)).orElse(null);
         if (user != null) {
             user.setActive(false);
             return userRepository.save(user);

@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Historique {
 
     @Id
-    private String id;
+    private long id;
 
     @Field
     private String msg;
@@ -27,11 +27,11 @@ public class Historique {
     }
 
     // Getters and Setters
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

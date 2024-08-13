@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Tutorial {
 
     @Id
-    private String id;
+    private long id;
 
 
     private String description;
@@ -21,11 +21,11 @@ public class Tutorial {
         this.description = description;
         this.published = published;
     }
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

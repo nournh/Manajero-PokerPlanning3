@@ -1,17 +1,14 @@
 package com.example.demo.Entity;
 
+import com.example.demo.Entity.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-
-import  com.example.demo.Entity.enums.Role;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -23,31 +20,37 @@ import java.util.Set;
 public class User implements Serializable {
 
     @Id
-    String id; // MongoDB uses String for IDs (typically ObjectId)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long id;
 
     String firstname;
     String lastname;
 
-    String email; // Ensure unique constraint at the application or database level
+    @Column(unique=true)
+    String email;
     String password;
     String picture;
 
+    @Enumerated(EnumType.STRING)
     Role role;
 
+
+
+
+
     @JsonIgnore
-    @DBRef(lazy = true)
+    @ManyToMany
     Set<Project> projectSet;
 
 
-
-
-
     String passwordResetToken;
+
     Boolean verified;
+
     String activationToken;
-    Boolean active;
 
 
+    Boolean Active;
 
 
 
@@ -59,7 +62,6 @@ public class User implements Serializable {
     public String getUsername() {
         return email;
     }
-
 
     public boolean isAccountNonExpired() {
         return true;
@@ -77,6 +79,6 @@ public class User implements Serializable {
 
 
     public boolean isEnabled() {
-        return active; // Assuming `active` determines if the account is enabled
+        return true;
     }
 }

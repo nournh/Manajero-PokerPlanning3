@@ -1,11 +1,11 @@
 package com.example.demo.Entity;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 @Getter
 @Setter
@@ -17,7 +17,7 @@ public class Ticket {
 
     @Id
     @Setter(AccessLevel.NONE)
-    String id; // MongoDB uses String for IDs (typically ObjectId)
+    long id; // MongoDB uses String for IDs (typically ObjectId)
 
     String description;
     String status;

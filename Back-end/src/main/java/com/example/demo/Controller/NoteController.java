@@ -66,7 +66,7 @@ public class NoteController {
   }
   @GetMapping("/getUserStoryIdForNote/{noteId}") // l kol note yatini id ta3 us
   //utilise
-  public String getUserStoryIdForNote(@PathVariable long noteId){
+  public long getUserStoryIdForNote(@PathVariable long noteId){
         return  noteService.getUserStoryIdForNote(noteId);
 }
     @PutMapping("/updateNote/{idNote}")

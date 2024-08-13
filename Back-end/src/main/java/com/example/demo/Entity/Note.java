@@ -20,7 +20,7 @@ public class Note {
 
     @Id
     @Setter(AccessLevel.NONE)
-    String id; // MongoDB uses String for IDs (typically ObjectId)
+    long id; // MongoDB uses String for IDs (typically ObjectId)
 
     @Field("id_user") // Maps the field to "id_user" in MongoDB
     long idUser;

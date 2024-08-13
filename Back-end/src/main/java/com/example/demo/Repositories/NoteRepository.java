@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface NoteRepository extends MongoRepository<Note, Long> {
 
-    @Query("select n from Note n where n.userStory.id = :id")
+    @Query("select n from Note n where n.userStory.id = id")
     List<Note> findByUserStoryId(@Param("id") Long id);
 
     long countByUserStoryId(Long id);

@@ -1,13 +1,11 @@
 package com.example.demo.Entity;
 
-import com.example.demo.Entity.Session;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -22,7 +20,7 @@ public class Sprint {
 
     @Id
     @Setter(AccessLevel.NONE)
-    String id; // MongoDB uses String for IDs (typically ObjectId)
+    long id; // MongoDB uses String for IDs (typically ObjectId)
 
     String name;
     LocalDate startDate;

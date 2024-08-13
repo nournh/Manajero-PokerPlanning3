@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Estimation {
 
     @Id
-    private String id;
+    private long id;
 
     @Field
     private long estimate;
@@ -26,11 +26,11 @@ public class Estimation {
     }
 
     // Getters and Setters
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

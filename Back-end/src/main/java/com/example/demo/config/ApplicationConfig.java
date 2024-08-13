@@ -1,11 +1,12 @@
-package tn.esprit.pockerplanning.config;
+package com.example.demo.config;
 
+import com.example.demo.Repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import tn.esprit.pockerplanning.repositories.UserRepository;
 
 @Configuration
 @RequiredArgsConstructor
@@ -15,8 +16,6 @@ public class ApplicationConfig {
     //to indicate eli methode hedhy bean
     @Bean
     public UserDetailsService userDetailsService(){
-        return username -> userRepository.findByEmail(username)
+        return username -> (UserDetails) userRepository.findByEmail(username)
                 .orElseThrow(()-> new UsernameNotFoundException("user not found"));
-    }
-
-}
+    }}

@@ -1,16 +1,15 @@
 package com.example.demo.Service;
 
-
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.Entity.*;
-import com.example.demo.Entity.enums.Complexity;
 import com.example.demo.Repositories.*;
 
 import java.util.*;
@@ -19,12 +18,13 @@ import java.util.*;
 @RequiredArgsConstructor
 @Slf4j
 public class IUserStoryServiceImp implements IUserStoryService{
-      private final SprintRepository sprintRepository;
-      private final UserStoryRepository userStoryRepository;
-      private final CardRepository cardRepo;
-      private final NoteRepository noteRepository;
-      private final UserRepository userRepo;
-
+    private final SprintRepository sprintRepository;
+    private final UserStoryRepository userStoryRepository;
+    private final CardRepository cardRepo;
+    private final NoteRepository noteRepository;
+    private final UserRepository userRepo;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
     @Override
     public UserStory addUSAndAssignUsToSprint(UserStory us, long id) {
         Sprint sprint = sprintRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid sprint Id"));
@@ -238,18 +238,8 @@ public class IUserStoryServiceImp implements IUserStoryService{
 
     @Override
     public List<UserStory> FindUsBySprint(long idSprint) {
-        List<UserStory> userStories = userStoryRepository.findBySprintId(idSprint);
-
-        for (UserStory userStory : userStories) {
-            // Récupérer la valeur de finalComplexity sous forme d'entier
-            int finalComplexityValue = userStory.getFinalcomplexity().getValue();
-            // Utiliser finalComplexityValue comme nécessaire
-        }
-
-        return userStories;
+        return userStoryRepository.findBySprintId(idSprint);
     }
-
-
 
     // Méthode utilitaire pour vérifier si un utilisateur est affecté à une histoire utilisateur donnée
     private boolean isUserAssignedToUserStory(UserStory userStory, Long userId) {

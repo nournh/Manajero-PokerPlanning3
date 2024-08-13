@@ -1,16 +1,21 @@
 package com.example.demo.Service;
 
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.stereotype.Service;
-import tn.esprit.pockerplanning.config.EmailService;
 import com.example.demo.Entity.AuthenticationResponse;
 import com.example.demo.Entity.Mail;
 import com.example.demo.Entity.RefreshTokenRequest;
 import com.example.demo.Entity.User;
 import com.example.demo.Repositories.UserRepository;
+import com.example.demo.config.EmailService;
+import jakarta.mail.MessagingException;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -21,9 +26,9 @@ import java.util.UUID;
 public class IAuthenticationServicesImp implements IAuthenticationServices{
     private final UserRepository  userRepository;
 
-    private final AuthenticationManager  authenticationManager;
+    private final AuthenticationManager authenticationManager;
     private final IJWTServices jwtServices;
-    private final  PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
 
 
@@ -40,8 +45,8 @@ public class IAuthenticationServicesImp implements IAuthenticationServices{
 
         // Vérifier si l'utilisateur est vérifié
         if (user.getVerified() && user.getActive()) {
-            var jwt = jwtServices.generateToken(user);
-            var refreshToken = jwtServices.generateRefreshToken(new HashMap<>(), user);
+            var jwt = jwtServices.generateToken((UserDetails) user);
+            var refreshToken = jwtServices.generateRefreshToken(new HashMap<>(), (UserDetails) user);
 
             AuthenticationResponse authenticationResponse = new AuthenticationResponse();
             authenticationResponse.setAccessToken(jwt);
@@ -75,8 +80,8 @@ public class IAuthenticationServicesImp implements IAuthenticationServices{
     public AuthenticationResponse refreshToken(RefreshTokenRequest refreshToken) {
         String userEmail = jwtServices.extractUsername(refreshToken.getRefreshToken());
         User user = userRepository.findByEmail(userEmail).orElseThrow(() -> new RuntimeException("User not found"));
-        if(jwtServices.isTokenValid(refreshToken.getRefreshToken(), user)) {
-            var jwt = jwtServices.generateToken(user);
+        if(jwtServices.isTokenValid(refreshToken.getRefreshToken(), (UserDetails) user)) {
+            var jwt = jwtServices.generateToken((UserDetails) user);
 
             AuthenticationResponse authenticationResponse = new AuthenticationResponse();
 

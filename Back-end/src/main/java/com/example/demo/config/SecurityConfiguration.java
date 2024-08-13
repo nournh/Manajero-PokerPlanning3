@@ -1,5 +1,6 @@
-package tn.esprit.pockerplanning.config;
+package com.example.demo.config;
 
+import com.example.demo.Service.IUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,8 +19,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import tn.esprit.pockerplanning.services.IUserDetailsService;
-import tn.esprit.pockerplanning.services.IUserServices;
 
 import java.util.Arrays;
 

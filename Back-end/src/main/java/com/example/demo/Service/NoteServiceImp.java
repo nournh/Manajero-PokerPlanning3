@@ -69,7 +69,8 @@ public class NoteServiceImp implements NoteService {
                 noteDetails.put("date", note.getDate());
 
                 // Récupérer l'utilisateur associé à la note
-                User user = userRepo.findById(String.valueOf(note.getIdUser())).orElse(null);
+                User user;
+                user = userRepo.findById((note.getIdUser())).orElse(null);
                 if (user != null) {
                     noteDetails.put("FirstName", user.getFirstname());
                     noteDetails.put("LastName", user.getLastname());
@@ -99,13 +100,13 @@ public class NoteServiceImp implements NoteService {
         return noteRepository.countByUserStoryId(id);
     }
 @Override
-    public String getUserStoryIdForNote(Long noteId) {
+    public long getUserStoryIdForNote(Long noteId) {
         Note note = noteRepository.findById(noteId).orElse(null);
         if (note != null) {
             return note.getUserStory().getId();
         } else {
             // Gérer le cas où la note n'est pas trouvée
-            return null;
+            return noteId;
         }
     }
 

@@ -1,11 +1,11 @@
-package tn.esprit.pockerplanning.services;
+package com.example.demo.Service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import tn.esprit.pockerplanning.repositories.UserRepository;
+import  com.example.demo.Repositories.UserRepository;
 
 @Service
 @RequiredArgsConstructor
@@ -18,7 +18,7 @@ public class IUserDetailsServiceImp implements IUserDetailsService {
         return new UserDetailsService(){
             @Override
             public UserDetails loadUserByUsername(String s) {
-                return userRepository.findByEmail(s).orElseThrow(() -> new RuntimeException("User not found"));
+                return (UserDetails) userRepository.findByEmail(s).orElseThrow(() -> new RuntimeException("User not found"));
             }
         };
     }
