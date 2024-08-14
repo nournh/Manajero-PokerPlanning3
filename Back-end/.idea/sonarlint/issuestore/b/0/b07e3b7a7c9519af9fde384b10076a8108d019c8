@@ -1,0 +1,7 @@
+
+L	java:S1063"+Replace this use of System.out by a logger.(©ìÍÿÿÿÿÿ8³˜ÃÃ”2
+L	java:S106<"+Replace this use of System.out by a logger.(›ğìõÿÿÿÿÿ8µ˜ÃÃ”2
+L	java:S106>"+Replace this use of System.out by a logger.(üÙƒ÷øÿÿÿÿ8µ˜ÃÃ”2
+G	java:S106C"+Replace this use of System.out by a logger.(­„Ê‡8µ˜ÃÃ”2
+x
+java:S2159`"VRemove this call to "equals"; comparisons between unrelated types always return false.(°ƒ¥ıÿÿÿÿ8•üçŞ”2

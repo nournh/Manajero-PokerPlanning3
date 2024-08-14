@@ -1,0 +1,21 @@
+
+n
+java:S1192t"LDefine a constant instead of duplicating this literal "description" 4 times.(×ÛÍªøÿÿÿÿ8÷·Ş”2
+d
+java:S1192"FDefine a constant instead of duplicating this literal "error" 3 times.(ËìşÎ8ø·Ş”2
+h
+java:S1192{"KDefine a constant instead of duplicating this literal "Unassigned" 3 times.(Éã‚8ø·Ş”2
+Ÿ
+java:S1186…"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÀÆÓ¦8ßè£Ş”2
+¤
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¿ê“Ÿıÿÿÿÿ8àè£Ş”2
+¤
+java:S1186£"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(À‚æûÿÿÿÿ8àè£Ş”2
+l
+java:S1854Z"ORemove this useless assignment to local variable "updatedComplexityPercentage".(î¶øÃ8‡¸Ş”2
+]
+java:S1481Z"@Remove this unused "updatedComplexityPercentage" local variable.(î¶øÃ8Š¸Ş”2
+o
+java:S3776f"RRefactor this method to reduce its Cognitive Complexity from 46 to the 15 allowed.(¢Ê¾Ë8Š¸Ş”2
+u
+java:S3776Æ"RRefactor this method to reduce its Cognitive Complexity from 38 to the 15 allowed.(ÅÎûºşÿÿÿÿ8”¸Ş”2

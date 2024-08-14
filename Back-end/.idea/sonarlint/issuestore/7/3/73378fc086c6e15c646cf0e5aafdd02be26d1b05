@@ -1,0 +1,14 @@
+
+[	java:S112S"FDefine and throw a dedicated exception instead of using a generic one.(×ê´ß
+J
+java:S3740J"/Provide the parametrized type for this generic.(ê¤œûÿÿÿÿ
+_
+java:S2259@"BA "NullPointerException" could be thrown; "user" is nullable here.(¹Óè¶8˜‹Å”2
+_
+java:S2259N"BA "NullPointerException" could be thrown; "user" is nullable here.(¬æĞñ8Æ¿Å”2
+­
+java:S4449:"ŠAnnotate the parameter with @javax.annotation.Nullable in method 'save' declaration, or make sure that null can not be passed as argument.(ÓíŒêüÿÿÿÿ8å¯œÅ”2
+s
+java:S1128"VRemove this unused import 'org.springframework.security.core.userdetails.UserDetails'.(ÊÁ¥8ÍÔªß”2
+z
+java:S1128"]Remove this unused import 'org.springframework.security.core.userdetails.UserDetailsService'.(¶…¥à8ÍÔªß”2

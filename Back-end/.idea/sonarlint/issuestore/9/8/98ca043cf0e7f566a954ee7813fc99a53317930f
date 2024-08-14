@@ -1,0 +1,9 @@
+
+b
+java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(¬ñğùùÿÿÿÿ8ï­îŞ”2
+b
+java:S4684%"@Replace this persistent entity with a simple POJO or DTO object.(ïèŞúÿÿÿÿ8ñ­îŞ”2
+o	java:S1006"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤…“§ûÿÿÿÿ8½ëØÅ”2
+j	java:S100J"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùÚ£â8¾ëØÅ”2
+o	java:S100V"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËÓÄàùÿÿÿÿ8¿ëØÅ”2
+]	java:S125R"<This block of commented-out lines of code should be removed.(÷Ğ¾¢ûÿÿÿÿ8¿ëØÅ”2
